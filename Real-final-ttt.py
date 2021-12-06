@@ -28,39 +28,35 @@ def playerturn():
   plrinput = input('\"X\" input position (1-9): ')
   intinput = int(plrinput)
   #Checks for valid 
-  freespace(intinput)
-  if occupied == False:
-    setlocation(intinput, Plrletter)
-  else:
-    print('Please pick an unoccupied space')
+  if intinput<1 or intinput>9:
+    print('Please enter a valid number.')
     playerturn()
+  else:
+    freespace(intinput)
+    if occupied == False:
+      setlocation(intinput, Plrletter)
+    else:
+      print('Please pick an unoccupied space')
+      playerturn() 
 
 #Checks for free space
 def freespace(index):
   global occupied
   rownum = 0
   numvalid = False
-  
-  if index > 6 and index <10:
+  if index > 6:
     rownum = 7
     row = Row3
-    numvalid = True
-  elif index < 4 and index > 0:
+  elif index < 4:
     rownum = 1
     row = Row1
-    numvalid = True
-  elif index < 7 and index > 3:
+  else:
     rownum = 4
     row = Row2
-    numvalid = True
-  else:
-    numvalid = False
-  if numvalid == False:
-    print('Please enter a valid number')
-    playerturn()
-  else:
-    if row[index-rownum] == '-':
-      occupied = False
+
+  if row[index-rownum] == '-':
+    occupied = False
+  
 
 #Places pieces
 def setlocation(index, letter):
@@ -137,13 +133,11 @@ def boardplaystate():
         winstate()
       else:
         printboard()
-    else:
-      print('This game was a draw')
 
 
 
 
-# Jalen's Code =====================================================================================================
+# Jalen's Code =========================================================================
 
 # Does a valid move from the lsit on the past board
 #returns None if there are no valid moves
