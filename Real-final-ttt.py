@@ -137,6 +137,8 @@ def boardplaystate():
         winstate()
       else:
         printboard()
+    else:
+      print('This game was a draw')
 
 
 
