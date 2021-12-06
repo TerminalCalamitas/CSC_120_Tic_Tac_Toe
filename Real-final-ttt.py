@@ -54,7 +54,9 @@ def freespace(index):
     rownum = 4
     row = Row2
 
-  if row[index-rownum] == '-':
+  if row[index-rownum] != '-':
+    occupied = True
+  else:
     occupied = False
   
 
@@ -124,7 +126,7 @@ def boardplaystate():
   global turnnum
   global win
   while win == False:
-    if turnnum < 5:
+    if turnnum < 4:
       playerturn()
       winstate()
       if win == False:
